@@ -37,37 +37,49 @@ def graph_deriv( func = input_box( default = x^2, label = "function", width = 20
         c = slider(-10, 10, step_size = 0.05, label = "value = c"), 
         labels = False ):
     
-    f = func.function(x)
+    f = func         
     graph = point((0, 0)) 
-    point1 = point( (x_min, y_min) )
+    point1 = point( (0, 0) )
        
     if labels == True:
+        old_index = 4
         for j in range(n+1):
-            df = derivative(f, x, j)
-            deriv = plot( df, (x, x_min, x_max), ymin = y_min, ymax = y_max, thickness = 2,
-                legend_label = "Derivative " + str(j), color = sorted(colors)[j + 119] )
-            if (x_min <= c) and (c <= x_max):
-                if df.has(x):
-                    point1 = point( (c, df(c)), size = 30, color = 'green' )
-                    print "f" + "'"*j + "(c) = " + str(df(c))
-                else:
-                    point1 = point( (c, df), size = 30, color = 'green' )
-                    print "f" + "'"*j + "(c) = " + str(df)
-            graph += deriv + point1
+            index = randrange(0,140)
+            if index != old_index :
+                df = derivative(f, x, j)
+                deriv = plot( df, (x, x_min, x_max), ymin = y_min, ymax = y_max, thickness = 2,
+                    legend_label = "Derivative " + str(j), color = sorted(colors)[index] )
+                if (x_min <= c) and (c <= x_max):
+                    if df.has(x):
+                        point1 = point( (c, df(c)), size = 30, color = 'green' )
+                        print "f" + "'"*j + "(c) = " + str(df(c))
+                    else:
+                        point1 = point( (c, df), size = 30, color = 'green' )
+                        print "f" + "'"*j + "(c) = " + str(df)
+                graph += deriv + point1
+            else:
+                n = n+1
+            old_index = index
             
     else:
+        old_index = 4
         for j in range(n+1):
-            df = derivative(f, x, j)
-            deriv = plot( df, (x, x_min, x_max), ymin = y_min, ymax = y_max, thickness = 2,
-                color = sorted(colors)[j + 119] )
-            if (x_min <= c) and (c <= x_max):
-                if df.has(x):
-                    point1 = point( (c, df(c)), size = 30, color = 'green' )
-                    print "f" + "'"*j + "(c) = " + str(df(c))
-                else:
-                    point1 = point( (c, df), size = 30, color = 'green' )
-                    print "f" + "'"*j + "(c) = " + str(df)
-            graph += deriv + point1
+            index = randrange(0,140)
+            if index != old_index :
+                df = derivative(f, x, j)
+                deriv = plot( df, (x, x_min, x_max), ymin = y_min, ymax = y_max, thickness = 2,
+                    color = sorted(colors)[index] )
+                if (x_min <= c) and (c <= x_max):
+                    if df.has(x):
+                        point1 = point( (c, df(c)), size = 30, color = 'green' )
+                        print "f" + "'"*j + "(c) = " + str(df(c))
+                    else:
+                        point1 = point( (c, df), size = 30, color = 'green' )
+                        print "f" + "'"*j + "(c) = " + str(df)
+                graph += deriv + point1
+            else:
+                n = n + 1
+            old_index = index
         
     graph.show()
 
@@ -75,6 +87,6 @@ def graph_deriv( func = input_box( default = x^2, label = "function", width = 20
 </div>
 
 <hr>
-Last modified on June 9th, 2017.
+Last modified on June 12th, 2017.
 </body>
 </html>
