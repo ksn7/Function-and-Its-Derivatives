@@ -43,16 +43,16 @@ $(function () {
 <script type="text/x-sage">
 
 @interact(layout = [ ['func', 'n'], ['x_min', 'x_max'], ['y_min', 'y_max'], ['c', 'labels'] ])
-def graph_deriv( func = input_box( default = x^2, label = "f(x) = ", width = 20),
+def graph_deriv( func = input_box( default = x^2, label = "function", width = 20),
         x_min = input_box( default = -5, label = "x min", width = 5),
         x_max = input_box( default = 5, label = "x max", width = 5),
         y_min = input_box( default = -2, label = "y min", width = 5),
         y_max = input_box( default = 25, label = "y max", width = 5),
         n = input_box( default = 2, label = "Number of derivatives", width = 20), 
-        c = slider(-10, 10, step_size = 0.05, label = "value = c"), 
-        labels = False ):
+        c = slider(-10, 10, step_size = 0.05, default = 3, label = "c"), 
+        labels = False ): 
     
-    f = func         
+    f = func.function(x)         
     graph = point((0, 0)) 
     point1 = point( (0, 0) )
        
@@ -64,13 +64,14 @@ def graph_deriv( func = input_box( default = x^2, label = "f(x) = ", width = 20)
                 df = derivative(f, x, j)
                 deriv = plot( df, (x, x_min, x_max), ymin = y_min, ymax = y_max, thickness = 2,
                     legend_label = "Derivative " + str(j), color = sorted(colors)[index] )
-                if (x_min <= c) and (c <= x_max):
-                    if df.has(x):
+                if df.has(x):
+                    if (x_min <= c) and (c <= x_max):
                         point1 = point( (c, df(c)), size = 30, color = 'green' )
-                        print "f" + "'"*j + "(c) = " + str(df(c))
-                    else:
+                    print "f" + "'"*j + "(c) = " + str(df(c))
+                else:
+                    if (x_min <= c) and (c <= x_max):
                         point1 = point( (c, df), size = 30, color = 'green' )
-                        print "f" + "'"*j + "(c) = " + str(df)
+                    print "f" + "'"*j + "(c) = " + str(df)
                 graph += deriv + point1
             else:
                 n = n+1
@@ -84,25 +85,26 @@ def graph_deriv( func = input_box( default = x^2, label = "f(x) = ", width = 20)
                 df = derivative(f, x, j)
                 deriv = plot( df, (x, x_min, x_max), ymin = y_min, ymax = y_max, thickness = 2,
                     color = sorted(colors)[index] )
-                if (x_min <= c) and (c <= x_max):
-                    if df.has(x):
+                if df.has(x):
+                    if (x_min <= c) and (c <= x_max):
                         point1 = point( (c, df(c)), size = 30, color = 'green' )
-                        print "f" + "'"*j + "(c) = " + str(df(c))
-                    else:
+                    print "f" + "'"*j + "(c) = " + str(df(c))
+                else:
+                    if (x_min <= c) and (c <= x_max):
                         point1 = point( (c, df), size = 30, color = 'green' )
-                        print "f" + "'"*j + "(c) = " + str(df)
+                    print "f" + "'"*j + "(c) = " + str(df)
                 graph += deriv + point1
             else:
                 n = n + 1
             old_index = index
         
     graph.show()
-
+    
 </script>
 </div>
 
 <hr>
-Last modified on June 21st, 2017.
+Last modified on June 28th, 2017.
 </body>
 </html>
 
