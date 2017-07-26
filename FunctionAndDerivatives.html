@@ -75,16 +75,12 @@ def graph_deriv( func = input_box( default = x^2, label = "function", width = 20
                 
                 # If displaying c, add points and add values to be printed
                 if show_c == True :
-                    if df.has(x):
-                        if (x_min <= c) and (c <= x_max):
-                            point1 = point( (c, df(c)), size = 30, color = 'green' )
-                        text1 += "f" + "'"*j + "(c) = " + str(df(c)) + "\n"
-                    else:
-                        if (x_min <= c) and (c <= x_max):
-                            point1 = point( (c, df), size = 30, color = 'green' )
-                        text1 += "f" + "'"*j + "(c) = " + str(df) + "\n"
+                    if (x_min <= c) and (c <= x_max):
+                        point1 = point( (c, df(c)), size = 30, color = 'green' )
+                    text1 += "f" + "'"*j + "(c) = " + str(df(c)) + "\n"
                 graph += deriv + point1
-            # If the colors aren't different, make n bigger and iterate again
+                
+            # If the colors aren't different, make n bigger and iterate again.
             else:
                 n = n+1
             old_index = index
@@ -105,14 +101,9 @@ def graph_deriv( func = input_box( default = x^2, label = "function", width = 20
                     
                 # If displaying c, add points and add values to be printed
                 if show_c == True :
-                    if df.has(x):
-                        if (x_min <= c) and (c <= x_max):
-                            point1 = point( (c, df(c)), size = 30, color = 'green' )
-                        text1 += "f" + "'"*j + "(c) = " + str(df(c)) + "\n"
-                    else:
-                        if (x_min <= c) and (c <= x_max):
-                            point1 = point( (c, df), size = 30, color = 'green' )
-                        text1 += "f" + "'"*j + "(c) = " + str(df) + "\n"
+                    if (x_min <= c) and (c <= x_max):
+                        point1 = point( (c, df(c)), size = 30, color = 'green' )
+                    text1 += "f" + "'"*j + "(c) = " + str(df(c)) + "\n"
                 graph += deriv + point1
                 
             # If the colors aren't different, make n bigger and iterate again
@@ -127,7 +118,6 @@ def graph_deriv( func = input_box( default = x^2, label = "function", width = 20
 </div>
 
 <hr>
-Last modified on July 24th, 2017.
+Last modified on July 26th, 2017.
 </body>
 </html>
-
